@@ -1,0 +1,19 @@
+[repository]
+native = LF
+
+[patterns]
+**.py = native
+**.pnfo = native 
+**.tnfo = native
+**.nfo  = native
+**.pnml = native
+**.tnml = native
+**.nml  = native
+**.vcproj = CRLF
+**.txt = native
+Makefile* = LF
+**.sh  = LF
+**.jpg = BIN
+**.pcx = BIN
+**.png = BIN
+**.xls = BIN
