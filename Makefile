@@ -12,6 +12,10 @@ all:
 	$(_V) $(MAKE) $(MAKE_FLAGS) depend
 	$(_V) $(MAKE) $(MAKE_FLAGS) $(TARGET_FILES) $(DOC_FILES)
 
+depend:
+	$(_V) $(MAKE) $(MAKE_FLAGS) depend_src
+	$(_V) $(MAKE) $(MAKE_FLAGS) depend_gfx
+
 docs: $(DOC_FILES)
 
 grf: $(GRF_FILES)
@@ -57,6 +61,12 @@ endif
 ifeq "$(MAKECMDGOALS)" "depend"
 NODEP = 1
 endif
+ifeq "$(MAKECMDGOALS)" "depend_src"
+NODEP = 1
+endif
+ifeq "$(MAKECMDGOALS)" "depend_gfx"
+NOGFXDEP = 1
+endif
 ifeq "$(MAKECMDGOALS)" "test"
 NODEP = 1
 endif
@@ -64,7 +74,9 @@ endif
 ifndef NODEP
 -include Makefile.dep
 -include $(patsubst %.grf,%.src.dep,$(GRF_FILES))
+ifndef NOGFXDEP
 -include $(patsubst %.grf,%.gfx.dep,$(GRF_FILES))
+endif
 endif
 
 # Stuff common to all NewGRFs

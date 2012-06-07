@@ -1,4 +1,4 @@
-.PHONY: all clean distclean mrproper depend docs test bundle bundle_bsrc bundle_bzip bundle_gsrc bundle_src bundle_tar bundle_xsrc bundle_xz bundle_zip bundle_zsrc check addcheck
+.PHONY: all clean distclean mrproper depend depend_src depend_gfx docs test bundle bundle_bsrc bundle_bzip bundle_gsrc bundle_src bundle_tar bundle_xsrc bundle_xz bundle_zip bundle_zsrc check addcheck
 
 # We want to disable the default rules. It's not c/c++ anyway
 .SUFFIXES:
@@ -126,7 +126,7 @@ $(REV_FILENAME):
 	$(_V) [ -f $@ ] && [ "`cat $@`" = "$(REPO_VERSION_STRING)" ] || echo $(REPO_VERSION_STRING) > $@
 
 # we have to write the version here w/o depending on the REV_FILENAME:
-depend::
+depend_src::
 	$(_V) [ -f $(REV_FILENAME) ] && [ "`cat $(REV_FILENAME)`" = "$(REPO_VERSION_STRING)" ] || echo "$(REPO_VERSION_STRING)" > $(REV_FILENAME)
 
 Makefile.local:;

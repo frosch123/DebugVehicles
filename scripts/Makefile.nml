@@ -49,4 +49,5 @@ test::
 	$(_E) "nml:                          $(NML) $(NML_FLAGS)"
 	$(_E) "Language files:               $(LANG_FILES)"
 
-depend:: Makefile.dep $(patsubst %.grf,%.src.dep,$(GRF_FILES)) $(patsubst %.grf,%.gfx.dep,$(GRF_FILES))
+depend_src:: $(patsubst %.grf,%.src.dep,$(GRF_FILES))
+depend_gfx:: Makefile.dep $(patsubst %.grf,%.gfx.dep,$(GRF_FILES))
