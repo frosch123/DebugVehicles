@@ -1,0 +1,100 @@
+/*
+ * This file is part of Debug Vehicles.
+ * Debug Vehicles is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * Debug Vehicles is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#define ARTICPART(veh_length)                                                         \
+item(FEAT_ROADVEHS, item_rvartic_##veh_length) {                                      \
+    property {                                                                        \
+        climates_available:             NO_CLIMATE;                                   \
+        refittable_cargo_classes:       bitmask(CC_PIECE_GOODS, CC_EXPRESS);          \
+        non_refittable_cargo_classes:   bitmask(CC_PASSENGERS, CC_REFRIGERATED);      \
+        loading_speed:                  5;                                            \
+        cost_factor:                    0;                                            \
+        running_cost_factor:            0;                                            \
+                                                                                      \
+        sprite_id:                      SPRITE_ID_NEW_ROADVEH;                        \
+        misc_flags:                     0;                                            \
+        refit_cost:                     0;                                            \
+        running_cost_base:              RUNNING_COST_NONE;                            \
+        power:                          0;                                            \
+        weight:                         0;                                            \
+        tractive_effort_coefficient:    0;                                            \
+        cargo_capacity:                 20;                                           \
+        visual_effect:                  VISUAL_EFFECT_DISABLE;                        \
+        length:                         veh_length;                                   \
+    }                                                                                 \
+                                                                                      \
+    graphics {                                                                        \
+        default: spritegroup_##veh_length;                                            \
+    }                                                                                 \
+}
+
+/* Define articulated parts for all lengths with the names item_rvartic_<length> */
+ARTICPART(8)
+ARTICPART(7)
+ARTICPART(6)
+ARTICPART(5)
+ARTICPART(4)
+ARTICPART(3)
+ARTICPART(2)
+ARTICPART(1)
+
+#define RV_BASE(veh_name, front_length, switches)                                     \
+item(FEAT_ROADVEHS, item_rv_##veh_name) {                                             \
+    property {                                                                        \
+        name:                           string(veh_name);                             \
+        climates_available:             ALL_CLIMATES;                                 \
+        introduction_date:              date(01,01,01);                               \
+        model_life:                     255;                                          \
+        vehicle_life:                   15;                                           \
+        reliability_decay:              20;                                           \
+        refittable_cargo_classes:       bitmask(CC_PIECE_GOODS, CC_EXPRESS);          \
+        non_refittable_cargo_classes:   bitmask(CC_PASSENGERS, CC_REFRIGERATED);      \
+        loading_speed:                  5;                                            \
+        cost_factor:                    1;                                            \
+        running_cost_factor:            1;                                            \
+                                                                                      \
+        sprite_id:                      SPRITE_ID_NEW_ROADVEH;                        \
+        speed:                          50 km/h;                                      \
+        misc_flags:                     0;                                            \
+        refit_cost:                     0;                                            \
+        running_cost_base:              RUNNING_COST_ROADVEH;                         \
+        power:                          200 hp;                                       \
+        weight:                         2 ton;                                        \
+        tractive_effort_coefficient:    0.3;                                          \
+        cargo_capacity:                 20;                                           \
+        visual_effect:                  VISUAL_EFFECT_DISABLE;                        \
+        length:                         front_length;                                 \
+    }                                                                                 \
+                                                                                      \
+    graphics {                                                                        \
+        default: spritegroup_##front_length;                                          \
+        switches                                                                      \
+    }                                                                                 \
+}
+
+/* Macro for defining a non-articulated RV */
+#define RV_1PART(veh_name, front_length) RV_BASE(veh_name, front_length, )
+
+/* Macro for defining an articulared RV of any length using a custom switch block */
+#define RV_XPART(veh_name, front_length, artic_switch) RV_BASE(veh_name, front_length, articulated_part: artic_switch;)
+
+/* Macro for defining an articulated RV with 2 parts */
+#define RV_2PART(veh_name, len1, len2)                                                \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
+    1: return item_rvartic_##len2;                                                    \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
+}                                                                                     \
+RV_XPART(veh_name, len1, switch_articulated_##veh_name)
+
+/* Macro for defining an articulated RV with 3 parts */
+#define RV_3PART(veh_name, len1, len2, len3)                                          \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
+    1: return item_rvartic_##len2;                                                    \
+    2: return item_rvartic_##len3;                                                    \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
+}                                                                                     \
+RV_XPART(veh_name, len1, switch_articulated_##veh_name)

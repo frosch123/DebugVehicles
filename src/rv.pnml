@@ -1,0 +1,40 @@
+/*
+ * This file is part of Debug Vehicles.
+ * Debug Vehicles is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * Debug Vehicles is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+switch (FEAT_ROADVEHS, SELF, switch_articulated_7_6_5_4_4_3_2_1_8, extra_callback_info1) {
+    1: return item_rvartic_7;
+    2: return item_rvartic_6;
+    3: return item_rvartic_5;
+    4: return item_rvartic_4;
+    5: return item_rvartic_4;
+    6: return item_rvartic_3;
+    7: return item_rvartic_2;
+    8: return item_rvartic_1;
+    9: return item_rvartic_8;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+RV_XPART(STR_NAME_8_7_6_5_4_4_3_2_1_8, 8, switch_articulated_7_6_5_4_4_3_2_1_8)
+
+RV_1PART(STR_NAME_8, 8)
+RV_1PART(STR_NAME_7, 7)
+RV_1PART(STR_NAME_6, 6)
+RV_1PART(STR_NAME_5, 5)
+RV_1PART(STR_NAME_4, 4)
+RV_1PART(STR_NAME_3, 3)
+RV_1PART(STR_NAME_2, 2)
+RV_1PART(STR_NAME_1, 1)
+
+RV_2PART(STR_NAME_8_8, 8, 8)
+
+RV_3PART(STR_NAME_1_8_7, 1, 8, 7)
+RV_3PART(STR_NAME_2_8_6, 2, 8, 6)
+RV_3PART(STR_NAME_3_8_5, 3, 8, 5)
+RV_3PART(STR_NAME_4_8_4, 4, 8, 4)
+RV_3PART(STR_NAME_5_8_3, 5, 8, 3)
+RV_3PART(STR_NAME_6_8_2, 6, 8, 2)
+RV_3PART(STR_NAME_7_8_1, 7, 8, 1)

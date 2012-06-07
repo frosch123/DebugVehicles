@@ -1,0 +1,51 @@
+/*
+ * This file is part of Debug Vehicles.
+ * Debug Vehicles is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * Debug Vehicles is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#define TRAINVEH(veh_length)                                                          \
+item(FEAT_TRAINS, item_train_##veh_length) {                                          \
+    property {                                                                        \
+        name:                           string(STR_NAME_##veh_length);                \
+        climates_available:             ALL_CLIMATES;                                 \
+        introduction_date:              date(01,01,01);                               \
+        model_life:                     255;                                          \
+        vehicle_life:                   15;                                           \
+        reliability_decay:              20;                                           \
+        refittable_cargo_classes:       bitmask(CC_PIECE_GOODS, CC_EXPRESS);          \
+        non_refittable_cargo_classes:   bitmask(CC_PASSENGERS, CC_REFRIGERATED);      \
+        loading_speed:                  5;                                            \
+        cost_factor:                    1;                                            \
+        running_cost_factor:            1;                                            \
+                                                                                      \
+        sprite_id:                      SPRITE_ID_NEW_TRAIN;                          \
+        speed:                          50 km/h;                                      \
+        misc_flags:                     0;                                            \
+        refit_cost:                     0;                                            \
+        track_type:                     RAIL;                                         \
+        power:                          1000 hp;                                      \
+        running_cost_base:              RUNNING_COST_DIESEL;                          \
+        cargo_capacity:                 20;                                           \
+        weight:                         100 ton;                                      \
+        engine_class:                   ENGINE_CLASS_DIESEL;                          \
+        tractive_effort_coefficient:    0.3;                                          \
+        length:                         veh_length;                                   \
+        visual_effect_and_powered:      VISUAL_EFFECT_DISABLE;                        \
+    }                                                                                 \
+                                                                                      \
+    graphics {                                                                        \
+        default: spritegroup_##veh_length;                                            \
+    }                                                                                 \
+}
+
+/* Single train vehicles for all lengths */
+TRAINVEH(8)
+TRAINVEH(7)
+TRAINVEH(6)
+TRAINVEH(5)
+TRAINVEH(4)
+TRAINVEH(3)
+TRAINVEH(2)
+TRAINVEH(1)
