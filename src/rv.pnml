@@ -5,16 +5,29 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
  */
 
-switch (FEAT_ROADVEHS, SELF, switch_articulated_7_6_5_4_4_3_2_1_8, extra_callback_info1) {
-    1: return item_rvartic_7;
-    2: return item_rvartic_6;
-    3: return item_rvartic_5;
-    4: return item_rvartic_4;
-    5: return item_rvartic_4;
-    6: return item_rvartic_3;
-    7: return item_rvartic_2;
-    8: return item_rvartic_1;
-    9: return item_rvartic_8;
+switch (FEAT_ROADVEHS, SELF, switch_articulated_7_6_5_4_4_3_2_1_8_normal, extra_callback_info1) {
+    1: return ARTICPARTNAME(0, 7);
+    2: return ARTICPARTNAME(0, 6);
+    3: return ARTICPARTNAME(0, 5);
+    4: return ARTICPARTNAME(0, 4);
+    5: return ARTICPARTNAME(0, 4);
+    6: return ARTICPARTNAME(0, 3);
+    7: return ARTICPARTNAME(0, 2);
+    8: return ARTICPARTNAME(0, 1);
+    9: return ARTICPARTNAME(0, 8);
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_articulated_7_6_5_4_4_3_2_1_8_tram, extra_callback_info1) {
+    1: return ARTICPARTNAME(1, 7);
+    2: return ARTICPARTNAME(1, 6);
+    3: return ARTICPARTNAME(1, 5);
+    4: return ARTICPARTNAME(1, 4);
+    5: return ARTICPARTNAME(1, 4);
+    6: return ARTICPARTNAME(1, 3);
+    7: return ARTICPARTNAME(1, 2);
+    8: return ARTICPARTNAME(1, 1);
+    9: return ARTICPARTNAME(1, 8);
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
 }
 

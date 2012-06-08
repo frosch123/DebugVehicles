@@ -5,8 +5,10 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define ARTICPART(id, veh_length)                                                     \
-item(FEAT_ROADVEHS, item_rvartic_##veh_length, id) {                                  \
+#define ARTICPARTNAME(tram, veh_length) item_rvartic_##tram##_##veh_length
+
+#define ARTICPART(id, tram, veh_length)                                               \
+item(FEAT_ROADVEHS, ARTICPARTNAME(tram, veh_length), id) {                            \
     property {                                                                        \
         climates_available:             NO_CLIMATE;                                   \
         refittable_cargo_classes:       bitmask(CC_PIECE_GOODS, CC_EXPRESS);          \
@@ -16,7 +18,7 @@ item(FEAT_ROADVEHS, item_rvartic_##veh_length, id) {                            
         running_cost_factor:            0;                                            \
                                                                                       \
         sprite_id:                      SPRITE_ID_NEW_ROADVEH;                        \
-        misc_flags:                     0;                                            \
+        misc_flags:                     tram ? bitmask(ROADVEH_FLAG_TRAM) : 0;        \
         refit_cost:                     0;                                            \
         running_cost_base:              RUNNING_COST_NONE;                            \
         power:                          0;                                            \
@@ -32,18 +34,27 @@ item(FEAT_ROADVEHS, item_rvartic_##veh_length, id) {                            
     }                                                                                 \
 }
 
-/* Define articulated parts for all lengths with the names item_rvartic_<length> */
-ARTICPART(88, 8)
-ARTICPART(89, 7)
-ARTICPART(90, 6)
-ARTICPART(91, 5)
-ARTICPART(92, 4)
-ARTICPART(93, 3)
-ARTICPART(94, 2)
-ARTICPART(95, 1)
+/* Define articulated parts for all lengths with the names ARTICPARTNAME(tram, veh_length) */
+ARTICPART(88, 0, 8)
+ARTICPART(89, 0, 7)
+ARTICPART(90, 0, 6)
+ARTICPART(91, 0, 5)
+ARTICPART(92, 0, 4)
+ARTICPART(93, 0, 3)
+ARTICPART(94, 0, 2)
+ARTICPART(95, 0, 1)
 
-#define RV_BASE(id, veh_name, front_length, switches)                                 \
-item(FEAT_ROADVEHS, item_rv_##veh_name, id) {                                         \
+ARTICPART(188, 1, 8)
+ARTICPART(189, 1, 7)
+ARTICPART(190, 1, 6)
+ARTICPART(191, 1, 5)
+ARTICPART(192, 1, 4)
+ARTICPART(193, 1, 3)
+ARTICPART(194, 1, 2)
+ARTICPART(195, 1, 1)
+
+#define RV_BASE(id, veh_name, tram, front_length, switches)                           \
+item(FEAT_ROADVEHS, item_rv_##tram##_##veh_name, id) {                                \
     property {                                                                        \
         name:                           string(veh_name);                             \
         climates_available:             ALL_CLIMATES;                                 \
@@ -59,7 +70,7 @@ item(FEAT_ROADVEHS, item_rv_##veh_name, id) {                                   
                                                                                       \
         sprite_id:                      SPRITE_ID_NEW_ROADVEH;                        \
         speed:                          50 km/h;                                      \
-        misc_flags:                     0;                                            \
+        misc_flags:                     tram ? bitmask(ROADVEH_FLAG_TRAM) : 0;        \
         refit_cost:                     0;                                            \
         running_cost_base:              RUNNING_COST_ROADVEH;                         \
         power:                          200 hp;                                       \
@@ -76,25 +87,38 @@ item(FEAT_ROADVEHS, item_rv_##veh_name, id) {                                   
     }                                                                                 \
 }
 
-/* Macro for defining a non-articulated RV */
-#define RV_1PART(id, veh_name, front_length) RV_BASE(id, veh_name, front_length, )
+/* Macro for defining a non-articulated RV (both normal and tram at once) */
+#define RV_1PART(id, veh_name, front_length)                                          \
+    RV_BASE(id, veh_name, 0, front_length, )                                          \
+    RV_BASE(id + 100, veh_name, 1, front_length, )
 
-/* Macro for defining an articulared RV of any length using a custom switch block */
-#define RV_XPART(id, veh_name, front_length, artic_switch) RV_BASE(id, veh_name, front_length, articulated_part: artic_switch;)
+/* Macro for defining an articulared RV of any length using a custom switch block (both normal and tram at once) */
+#define RV_XPART(id, veh_name, front_length, artic_switch)                            \
+    RV_BASE(id, veh_name, 0, front_length, articulated_part: artic_switch##_normal;)  \
+    RV_BASE(id + 100, veh_name, 1, front_length, articulated_part: artic_switch##_tram;)
 
-/* Macro for defining an articulated RV with 2 parts */
+/* Macro for defining an articulated RV with 2 parts (both normal and tram at once) */
 #define RV_2PART(id, veh_name, len1, len2)                                            \
-switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
-    1: return item_rvartic_##len2;                                                    \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name##_normal, extra_callback_info1) { \
+    1: return ARTICPARTNAME(0, len2);                                                 \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
+}                                                                                     \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name##_tram, extra_callback_info1) { \
+    1: return ARTICPARTNAME(1, len2);                                                 \
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
 }                                                                                     \
 RV_XPART(id, veh_name, len1, switch_articulated_##veh_name)
 
-/* Macro for defining an articulated RV with 3 parts */
+/* Macro for defining an articulated RV with 3 parts (both normal and tram at once) */
 #define RV_3PART(id, veh_name, len1, len2, len3)                                      \
-switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
-    1: return item_rvartic_##len2;                                                    \
-    2: return item_rvartic_##len3;                                                    \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name##_normal, extra_callback_info1) { \
+    1: return ARTICPARTNAME(0, len2);                                                 \
+    2: return ARTICPARTNAME(0, len3);                                                 \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
+}                                                                                     \
+switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name##_tram, extra_callback_info1) { \
+    1: return ARTICPARTNAME(1, len2);                                                 \
+    2: return ARTICPARTNAME(1, len3);                                                 \
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
 }                                                                                     \
 RV_XPART(id, veh_name, len1, switch_articulated_##veh_name)
