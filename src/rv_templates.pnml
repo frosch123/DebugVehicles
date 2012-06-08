@@ -5,8 +5,8 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define ARTICPART(veh_length)                                                         \
-item(FEAT_ROADVEHS, item_rvartic_##veh_length) {                                      \
+#define ARTICPART(id, veh_length)                                                     \
+item(FEAT_ROADVEHS, item_rvartic_##veh_length, id) {                                  \
     property {                                                                        \
         climates_available:             NO_CLIMATE;                                   \
         refittable_cargo_classes:       bitmask(CC_PIECE_GOODS, CC_EXPRESS);          \
@@ -33,17 +33,17 @@ item(FEAT_ROADVEHS, item_rvartic_##veh_length) {                                
 }
 
 /* Define articulated parts for all lengths with the names item_rvartic_<length> */
-ARTICPART(8)
-ARTICPART(7)
-ARTICPART(6)
-ARTICPART(5)
-ARTICPART(4)
-ARTICPART(3)
-ARTICPART(2)
-ARTICPART(1)
+ARTICPART(88, 8)
+ARTICPART(89, 7)
+ARTICPART(90, 6)
+ARTICPART(91, 5)
+ARTICPART(92, 4)
+ARTICPART(93, 3)
+ARTICPART(94, 2)
+ARTICPART(95, 1)
 
-#define RV_BASE(veh_name, front_length, switches)                                     \
-item(FEAT_ROADVEHS, item_rv_##veh_name) {                                             \
+#define RV_BASE(id, veh_name, front_length, switches)                                 \
+item(FEAT_ROADVEHS, item_rv_##veh_name, id) {                                         \
     property {                                                                        \
         name:                           string(veh_name);                             \
         climates_available:             ALL_CLIMATES;                                 \
@@ -77,24 +77,24 @@ item(FEAT_ROADVEHS, item_rv_##veh_name) {                                       
 }
 
 /* Macro for defining a non-articulated RV */
-#define RV_1PART(veh_name, front_length) RV_BASE(veh_name, front_length, )
+#define RV_1PART(id, veh_name, front_length) RV_BASE(id, veh_name, front_length, )
 
 /* Macro for defining an articulared RV of any length using a custom switch block */
-#define RV_XPART(veh_name, front_length, artic_switch) RV_BASE(veh_name, front_length, articulated_part: artic_switch;)
+#define RV_XPART(id, veh_name, front_length, artic_switch) RV_BASE(id, veh_name, front_length, articulated_part: artic_switch;)
 
 /* Macro for defining an articulated RV with 2 parts */
-#define RV_2PART(veh_name, len1, len2)                                                \
+#define RV_2PART(id, veh_name, len1, len2)                                            \
 switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
     1: return item_rvartic_##len2;                                                    \
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
 }                                                                                     \
-RV_XPART(veh_name, len1, switch_articulated_##veh_name)
+RV_XPART(id, veh_name, len1, switch_articulated_##veh_name)
 
 /* Macro for defining an articulated RV with 3 parts */
-#define RV_3PART(veh_name, len1, len2, len3)                                          \
+#define RV_3PART(id, veh_name, len1, len2, len3)                                      \
 switch (FEAT_ROADVEHS, SELF, switch_articulated_##veh_name, extra_callback_info1) {   \
     1: return item_rvartic_##len2;                                                    \
     2: return item_rvartic_##len3;                                                    \
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;                                       \
 }                                                                                     \
-RV_XPART(veh_name, len1, switch_articulated_##veh_name)
+RV_XPART(id, veh_name, len1, switch_articulated_##veh_name)

@@ -5,8 +5,8 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define TRAINVEH(veh_length)                                                          \
-item(FEAT_TRAINS, item_train_##veh_length) {                                          \
+#define TRAINVEH(id, veh_length)                                                      \
+item(FEAT_TRAINS, item_train_##veh_length, id) {                                      \
     property {                                                                        \
         name:                           string(STR_NAME_##veh_length);                \
         climates_available:             ALL_CLIMATES;                                 \
@@ -41,11 +41,11 @@ item(FEAT_TRAINS, item_train_##veh_length) {                                    
 }
 
 /* Single train vehicles for all lengths */
-TRAINVEH(8)
-TRAINVEH(7)
-TRAINVEH(6)
-TRAINVEH(5)
-TRAINVEH(4)
-TRAINVEH(3)
-TRAINVEH(2)
-TRAINVEH(1)
+TRAINVEH(116, 8)
+TRAINVEH(117, 7)
+TRAINVEH(118, 6)
+TRAINVEH(119, 5)
+TRAINVEH(120, 4)
+TRAINVEH(121, 3)
+TRAINVEH(122, 2)
+TRAINVEH(123, 1)
