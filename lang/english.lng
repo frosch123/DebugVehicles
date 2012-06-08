@@ -6,6 +6,7 @@
 ##grflangid 0x01
 STR_GRF_NAME                                                    :Debug Vehicles {VERSION}
 STR_GRF_DESCRIPTION                                             :{ORANGE}Debug Vehicles{BLACK} provides various trains and road vehicles with different lengths for debug purposes.{}Programming & graphics: {SILVER}frosch{}{BLACK}License: {SILVER}GPL v2{}{BLACK}
+STR_GRF_URL                                                     :http://dev.openttdcoop.org/projects/debugveh
 
 STR_NAME_8                                                      :8/8
 STR_NAME_7                                                      :7/8
