@@ -1,0 +1,107 @@
+{{GRF_TITLE}}
+-----------------------------------
+
+Contents:
+
+1 About
+2 Details
+3 License
+4 Credits
+
+
+
+-------
+1 About
+-------
+
+Debug Vehicles provided various vehicles to test sprite sorting, alignment and vehicle movement
+in OpenTTD. All vehicles have a box-shape that easily displays the vehicle dimensions.
+
+ • Trains:
+    The set features 8 train engines with the lengths 1/8 to 8/8. They have no visual effects
+    interfering with the visibility of the exact vehicle shape. The engines can be combined in any
+    order to build trains of any length composition.
+
+ • Road vehicles:
+    The set features various road vehicles, articulated and non-articulated.
+    Since OpenTTD does not yet allow to attach road vehicles to each other like train wagons and
+    engines, the articulated road vehicles provide only a limited set of vehicle compositions of
+    different lengths.
+    Non-articulated vehicles are available for the length 1/8 to 8/8.
+    Articulated vehicles are available in the length of two tiles in the compositions
+    8-8, 1-8-7, 2-8-6, 3-8-5, 4-8-4, 5-8-3, 6-8-2 and 7-8-1.
+    Finally there is a three tile vehicle with the composition 8-7-6-5-4-4-3-2-1-8 which provides
+    all vehicle length within a single consist.
+
+ • Trams:
+    Trams are available in the exact same compositions as road vehicles.
+
+ • Vehicle lengths:
+    The length of the individual (articulated) vehicles are colour-coded.
+       8/8 - purple
+       7/8 - light-brown
+       6/8 - red
+       5/8 - orange
+       4/8 - yellow
+       3/8 - green
+       2/8 - dark green
+       1/8 - cyan
+
+
+--------------
+2 Details
+--------------
+
+Name of this Repo:  {{GRF_TITLE}}
+Repository version: {{REPO_REVISION}}
+GRF_ID:             {{GRF_ID}}
+MD5 sum:            {{GRF_MD5}}
+
+The minimum required OpenTTD version for this NewGRF is 1.2.0.
+
+
+---------
+3 License
+---------
+
+Debug Vehicles NewGRF for OpenTTD
+Copyright (C) 2012 by Christoph Elsenhans (see Credits section for further details)
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License version 2 as published by
+the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the
+Free Software Foundation, Inc.
+1 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA.
+
+The source code can be obtained from the #openttdcoop DevZone at:
+http://dev.openttdcoop.org/projects/debugveh
+
+Alternatively, you can get it via mercurial checkout:
+hg clone http://hg.openttdcoop.org/debugveh
+
+
+
+---------
+4 Credits
+---------
+
+Authors:
+    Code:                         Christoph Elsenhans (aka frosch)
+    Graphics:                     Christoph Elsenhans (aka frosch)
+    Makefile framework:           Ingo von Borstel (aka planetmaker)
+
+
+Special thanks to #openttdcoop and especially Ammler who provides and works a
+lot on maintaining the Development Zone where this repository is hosted and who
+also frequently gives much valuable input. Thanks also to Hirundo and Yexo for
+their work on NML which made this project come to live a lot easier.
