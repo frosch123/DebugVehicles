@@ -1,0 +1,9 @@
+# This file is part of Debug Vehicles.
+# Debug Vehicles is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+# Debug Vehicles is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Debug Vehicles. If not, see <http://www.gnu.org/licenses/>.
+#
+##grflangid 0x02
+STR_GRF_NAME                                                    :Debug Vehicles {VERSION}
+STR_GRF_DESCRIPTION                                             :{ORANGE}Debug Vehicles{BLACK} stellt einige Schienen- und Strassenfahrzeuge mit verschiedenen Längen für Debugging-Zwecke zur Verfügung.{}Programmierung & Grafik: {SILVER}frosch{}{BLACK}Lizenz: {SILVER}GPL v2{}{BLACK}
+STR_GRF_URL                                                     :http://dev.openttdcoop.org/projects/debugveh

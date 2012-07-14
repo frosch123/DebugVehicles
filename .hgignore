@@ -13,7 +13,7 @@ parsetab.py
 # And the description file and the grs which are generated automatically
 # This has to be adopted to the newgrf filename
 *.grf
-docs/readme.txt
+docs/readme*.txt
 
 # Ignore intermediate files created by the Makefile:
 *.nfo

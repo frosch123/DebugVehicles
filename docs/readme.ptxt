@@ -28,7 +28,7 @@ in OpenTTD. All vehicles have a box-shape that easily displays the vehicle dimen
     engines, the articulated road vehicles provide only a limited set of vehicle compositions of
     different lengths.
     Non-articulated vehicles are available for the length 1/8 to 8/8.
-    Articulated vehicles are available in the length of two tiles in the compositions
+    Articulated vehicles are available in the length of one tile in the compositions
     8-8, 1-8-7, 2-8-6, 3-8-5, 4-8-4, 5-8-3, 6-8-2 and 7-8-1.
     Finally there is a three tile vehicle with the composition 8-7-6-5-4-4-3-2-1-8 which provides
     all vehicle length within a single consist.
@@ -99,6 +99,9 @@ Authors:
     Code:                         Christoph Elsenhans (aka frosch)
     Graphics:                     Christoph Elsenhans (aka frosch)
     Makefile framework:           Ingo von Borstel (aka planetmaker)
+
+Translations:
+    German:                       Christoph Elsenhans (aka frosch)
 
 
 Special thanks to #openttdcoop and especially Ammler who provides and works a

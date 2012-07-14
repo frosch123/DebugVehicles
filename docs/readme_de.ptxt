@@ -1,0 +1,113 @@
+{{GRF_TITLE}}
+-----------------------------------
+
+Inhalt:
+
+1 Über dieses NewGRF
+2 Technische Details
+3 Lizenz
+4 Authoren
+
+
+
+-------
+1 Über dieses NewGRF
+-------
+
+Debug Vehicles stellt einige Schienen- und Strassenfahrzeuge zur Verfügung, um
+Sprite-Sortierung, -Ausrichtung und Fahrzeug-Bewegungen in OpenTTD zu testen.
+Alle Fahrzeuge haben eine Quaderform, die auf einfache Weise die Ausmaße der Fahrzeuge
+zeigt.
+
+ • Züge:
+    Das NewGRF beinhaltet 8 Lokomotiven in den Längen 1/8 bis 8/8. Diese besitzen
+    keine visuellen Effekte, die die Sichtbarkeit der Fahrzeug-Ausmaße beeinträchtigen könnten.
+    Die Lokomotiven können in beliebigen Längen-Kompositionen zu Zügen zusammengestellt werden.
+
+ • Straßenfahrzeuge:
+    Das NewGRF stellt verschiedene artikulierte und nicht-artikulierte Fahrzeuge bereit.
+    Da OpenTTD bisher nicht ermöglicht mehrere Straßenfahrzeuge wie Zugwagons aneinander zu
+    hängen, ermöglichen die artikulierten Fahrzeuge dieses Sets nur eine begrenzte Zahl an
+    Längen-Kompositionen.
+    Nicht-artikulierte Fahrzeugt stehen in den Längen 1/8 bis 8/8 zur Verfügung.
+    Artikulierte Fahrzeuge gibt es in der Länge von einem Feld in den Kompositionen
+    8-8, 1-8-7, 2-8-6, 3-8-5, 4-8-4, 5-8-3, 6-8-2 und 7-8-1.
+    Schließlich gibt es noch ein Fahrzeug in der Länge von drei Feldern in der Komposition
+    8-7-6-5-4-4-3-2-1-8, die alle Fahrzeuglängen in einem einzelnen Fahrzeug vereint.
+
+ • Straßenbahnen:
+    Straßenbahen werden in den gleichen Längen-Kompositionen wie die Straßenfahrzeuge bereit gestellt.
+
+ • Fajrzeuglängen:
+    Die Länge der einzelen (artikulierten) Fahrzeuge bestimmt die Fahrzeugfarbe:
+       8/8 - lila
+       7/8 - hellbraun
+       6/8 - rot
+       5/8 - orange
+       4/8 - gelb
+       3/8 - grün
+       2/8 - dunkelgrün
+       1/8 - türkis
+
+
+--------------
+2 Technische Details
+--------------
+
+Name der Quellen:   {{GRF_TITLE}}
+Repository version: {{REPO_REVISION}}
+GRF_ID:             {{GRF_ID}}
+MD5 sum:            {{GRF_MD5}}
+
+Dieses NewGRF benötigt mindestens OpenTTD 1.2.0.
+
+
+---------
+3 Lizenz
+---------
+
+Debug Vehicles NewGRF for OpenTTD
+Copyright (C) 2012 by Christoph Elsenhans (siehe Authoren für weitere Details)
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License version 2 as published by
+the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the
+Free Software Foundation, Inc.
+1 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA.
+
+Der Quelltext kann in der #openttdcoop DevZone angesehen werden:
+http://dev.openttdcoop.org/projects/debugveh
+
+Alternativ steht er auch über mercurial zur Verfügung:
+hg clone http://hg.openttdcoop.org/debugveh
+
+
+
+---------
+4 Authoren
+---------
+
+Authoren:
+    Code:                         Christoph Elsenhans (aka frosch)
+    Grafik:                       Christoph Elsenhans (aka frosch)
+    Makefile Infrastruktur:       Ingo von Borstel (aka planetmaker)
+
+Übersetzer:
+    Deutsch:                      Christoph Elsenhans (aka frosch)
+
+
+Besonderer Dank gilt #openttdcoop, insbesondere Ammler, die die
+Development Zone bereit stellen und warten, und auf der die Quellen
+dieses NewGRF gehostet sind. Dank gilt auch Hirundo und Yexo für
+ihre Arbeit zu NML, was die Erstellung dieses NewGRF stark vereinfacht
+hat.
